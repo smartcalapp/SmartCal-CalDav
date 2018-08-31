@@ -9,7 +9,7 @@
 class WebDavCon {
 	private:
 		int _file;
-		void sqlCon;
+		void* sqlCon;
 		WebDavCon(){
 
 		}
