@@ -6,8 +6,18 @@
 #define SMARTCAL_CALDAV_WEBDAV_H
 
 
-class webDav
-{
+class WebDavCon {
+	private:
+		int _file;
+		void sqlCon;
+		WebDavCon(){
+
+		}
+	public:
+		WebDavCon(int file){
+			_file = file;
+			//open SQL con
+		}
 
 };
 

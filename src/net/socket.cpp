@@ -8,8 +8,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <iostream>
+//TODO change to abs path
+#include "../webDav/WebDavCon.h"
 
-int handleNewConnection(int file)
+int handleNewConnection(int file);
 
 int openMasterSocket(){
 openMasterSocket(DEFAULT_PORT);
