@@ -9,6 +9,8 @@
 #include <netinet/in.h>
 #include <iostream>
 
+int handleNewConnection(int file)
+
 int openMasterSocket(){
 openMasterSocket(DEFAULT_PORT);
 }
@@ -35,9 +37,24 @@ int openMasterSocket(int port){
 		{
 			error = true;
 			std::cout << "error establishing connection";
+		} else {
+			auto conErr = handleNewConnection(newsockfd);
 		}
-		//handle connection
 
 	}
 	close(sockfd);
+}
+
+int handleNewConnection(int file){
+	int forkRet = fork();
+	if (forkRet < 0){
+		std::cout << "fork error";
+		return -1;
+	} else if (forkRet == 0){
+		//child
+		new WebDavCon(file);
+	} else if (forkRet > 0) {
+		//parent
+		return 0;
+	}
 }
