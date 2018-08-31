@@ -5,11 +5,14 @@
 #ifndef SMARTCAL_CALDAV_WEBDAV_H
 #define SMARTCAL_CALDAV_WEBDAV_H
 
+//TODO abs path
+#include "../calender/Calender.h"
 
 class WebDavCon {
 	private:
 		int _file;
 		void* sqlCon;
+		Calender cal;
 		WebDavCon(){
 
 		}
@@ -17,6 +20,7 @@ class WebDavCon {
 		WebDavCon(int file){
 			_file = file;
 			//open SQL con
+			//build calender
 		}
 
 };

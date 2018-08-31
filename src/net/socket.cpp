@@ -18,6 +18,7 @@ void openMasterSocket()
 	openMasterSocket(DEFAULT_PORT);
 }
 
+//todo refactor
 void openMasterSocket(int port)
 {
 	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -27,6 +28,7 @@ void openMasterSocket(int port)
 	serv_addr.sin_port = htons(port);
 	if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
 		std::cout << "error binding to socket";
+		exit(-1);
 	}
 	listen(sockfd, 5);
 
@@ -40,10 +42,14 @@ void openMasterSocket(int port)
 			std::cout << "error establishing connection";
 		} else {
 			auto conErr = handleNewConnection(newsockfd);
+			if (conErr < 0){
+				std::cout << "error handing connection";
+			}
 		}
 
 	}
 	close(sockfd);
+	exit(-2);
 }
 
 int handleNewConnection(int file)
@@ -55,7 +61,7 @@ int handleNewConnection(int file)
 	} else if (forkRet == 0) {
 		//child
 		new WebDavCon(file);
-		//do the rest
+		//todo do the rest
 		exit(0);
 	} else if (forkRet > 0) {
 		//parent
