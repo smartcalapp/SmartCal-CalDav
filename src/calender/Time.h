@@ -8,6 +8,8 @@
 
 #include <cstdint>
 
+bool isValidTime(uint_fast8_t hour, uint_fast8_t min, uint_fast8_t sec);
+
 class Time
 {
 	private:
@@ -15,14 +17,20 @@ class Time
 		uint_fast8_t _min;
 		uint_fast8_t _sec;
 	public:
-		Time(){
+		Time()
+		{
 
 		}
 
-		Time(uint_fast8_t hour, uint_fast8_t min, uint_fast8_t sec){
-			_hour = hour;
-			_min = min;
-			_sec = sec;
+		Time(uint_fast8_t hour, uint_fast8_t min, uint_fast8_t sec)
+		{
+			if (isValidTime(hour, min, sec)) {
+				_hour = hour;
+				_min = min;
+				_sec = sec;
+			} else {
+				//todo exception
+			}
 		}
 
 		uint_fast8_t gethour() const
@@ -30,9 +38,13 @@ class Time
 			return _hour;
 		}
 
-		void sethour(uint_fast8_t _hour)
+		void sethour(uint_fast8_t hour)
 		{
-			Time::_hour = _hour;
+			if (isValidTime(hour, _min, _sec)) {
+				Time::_hour = hour;
+			} else {
+				//todo exception
+			}
 		}
 
 		uint_fast8_t getmin() const
@@ -40,9 +52,13 @@ class Time
 			return _min;
 		}
 
-		void setmin(uint_fast8_t _min)
+		void setmin(uint_fast8_t min)
 		{
-			Time::_min = _min;
+			if (isValidTime(_hour, min, _sec)) {
+				Time::_min = min;
+			} else {
+				//todo exception
+			}
 		}
 
 		uint_fast8_t getsec() const
@@ -50,10 +66,15 @@ class Time
 			return _sec;
 		}
 
-		void setsec(uint_fast8_t _sec)
+		void setsec(uint_fast8_t sec)
 		{
-			Time::_sec = _sec;
+			if (isValidTime(_hour, _min, sec)) {
+				Time::_sec = sec;
+			} else {
+				//TODO exception
+			}
 		}
+
 };
 
 
