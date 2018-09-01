@@ -10,6 +10,7 @@
 
 bool isValidTime(uint_fast8_t hour, uint_fast8_t min, uint_fast8_t sec);
 
+
 class Time
 {
 	private:
@@ -76,6 +77,8 @@ class Time
 		}
 
 };
+
+Time epochTime2Time(int_fast64_t epoch);
 
 
 #endif //SMARTCAL_CALDAV_TIME_H
