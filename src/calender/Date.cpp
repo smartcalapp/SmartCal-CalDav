@@ -4,9 +4,9 @@
 
 #include "Date.h"
 
-Date epochTime2Date(uint_fast64_t epoch){
+#define EPOCH_SEC_PER_DAY 86400
+#define DAYS_PER_YEAR 365
 
-}
 
 bool isLeapYear(uint_fast16_t year)
 {
@@ -19,6 +19,41 @@ bool isLeapYear(uint_fast16_t year)
 	} else {
 		return true;
 	}
+}
+
+uint_fast8_t daysInMonth(uint_fast8_t month, uint_fast16_t year){
+	if (month == 2 && isLeapYear(year)) {
+		return 29;
+	}
+	if (month == 2 && !isLeapYear(year)) {
+		return 28;
+	}
+	if (month <= 7 && month % 2 == 1) {
+		return 31;
+	}
+	if (month <= 7 && month % 2 == 0) {
+		return 30;
+	}
+	if (month > 7 && month % 2 == 1) {
+		return 30;
+	}
+	if (month > 7 && month % 2 == 0) {
+		return 31;
+	}
+	return -1;
+}
+
+Date epochTime2Date(uint_fast64_t epoch){
+	uint_fast64_t daysSinceEpoch = epoch / EPOCH_SEC_PER_DAY;
+	uint_fast16_t year = 1970;
+	uint_fast8_t month = 0;
+	for (; daysSinceEpoch < (isLeapYear(year) ? 365 : 366); daysSinceEpoch -= isLeapYear(year) ? 365 : 366){
+		year++;
+	}
+	for (; daysSinceEpoch < daysInMonth(month, year); daysSinceEpoch -= daysInMonth(month, year)){
+		month++;
+	}
+	return Date(year, daysSinceEpoch, month);
 }
 
 bool isValidDate(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month)
