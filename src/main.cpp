@@ -3,5 +3,6 @@
 
 int main()
 {
+	//TODO make config class
 	openMasterSocket();
 }

@@ -7,11 +7,12 @@
 
 //TODO abs path
 #include "../calender/Calender.h"
+#include <libpq-fe.h>
 
 class WebDavCon {
 	private:
 		int _file;
-		void* sqlCon;
+		PGconn* sqlCon;
 		Calender cal;
 		WebDavCon(){
 
