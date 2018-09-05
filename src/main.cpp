@@ -9,7 +9,6 @@ int main(int argc, char** argv)
 		std::cout << "please only specify path to config file" << std::endl;
 		exit(-1);
 	}
-	//TODO make config class
 	config = Config(argv[1]);
 	openMasterSocket();
 }
