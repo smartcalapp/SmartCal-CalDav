@@ -3,3 +3,91 @@
 //
 
 #include "config.h"
+
+Config::Config(std::string path)
+{
+	std::ifstream configFile;
+	configFile.open(path);
+	std::string temp;
+	while (configFile) {
+		configFile >> temp;
+		if (temp == "postgress_server") {
+			configFile >> postgress_server;
+			continue;
+		}
+		if (temp == "postgress_port") {
+			configFile >> postgress_port;
+			continue;
+		}
+		if (temp == "postgress_database") {
+			configFile >> postgress_database;
+			continue;
+		}
+		if (temp == "postgress_username") {
+			configFile >> postgress_username;
+			continue;
+		}
+		if (temp == "postgress_password") {
+			configFile >> postgress_password;
+			continue;
+		}
+		if (temp == "webdav_port") {
+			configFile >> webdav_port;
+			continue;
+		}
+	}
+	if (postgress_server == ""){
+		postgress_server = "localhost";
+	}
+	if (postgress_port == -1){
+		postgress_port = 5432;
+	}
+	if (postgress_database == ""){
+		postgress_database = "SmartCal";
+		//TODO check on
+	}
+	if (postgress_username == ""){
+		postgress_username = "SmartCal";
+	}
+	if (postgress_password == ""){
+		postgress_password = "@SuperHardP@ss0rd";
+	}
+	if (webdav_port == -1) {
+		webdav_port = 80;
+	}
+}
+
+const std::string &Config::getPostgress_server() const
+{
+	return postgress_server;
+}
+
+int Config::getPostgress_port() const
+{
+	return postgress_port;
+}
+
+const std::string &Config::getPostgress_database() const
+{
+	return postgress_database;
+}
+
+const std::string &Config::getPostgress_username() const
+{
+	return postgress_username;
+}
+
+const std::string &Config::getPostgress_password() const
+{
+	return postgress_password;
+}
+
+int Config::getWebdav_port() const
+{
+	return webdav_port;
+}
+
+const std::string &Config::getConfigPath() const
+{
+	return configPath;
+}
