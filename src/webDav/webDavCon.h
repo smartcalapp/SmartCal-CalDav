@@ -17,8 +17,8 @@ class WebDavCon
 		private:
 				int _socket;
 				PGconn *_sqlCon;
-				Calender _cal;
 				std::string _conString;
+				Calender _cal;
 
 				WebDavCon()
 				{
