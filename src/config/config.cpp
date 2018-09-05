@@ -4,6 +4,8 @@
 
 #include "config.h"
 
+Config config;
+
 Config::Config(std::string path)
 {
 	std::ifstream configFile;

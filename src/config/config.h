@@ -40,6 +40,6 @@
 				 const std::string &getConfigPath() const;
  };
 
-Config config;
+extern Config config;
 
 #endif //SMARTCAL_CALDAV_CONFIG_H

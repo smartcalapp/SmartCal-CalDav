@@ -5,8 +5,6 @@
 #ifndef SMARTCAL_CALDAV_SOCKET_H
 #define SMARTCAL_CALDAV_SOCKET_H
 
-#define DEFAULT_PORT 80
-
 void openMasterSocket();
 void openMasterSocket(int port);
 

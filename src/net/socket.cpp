@@ -10,12 +10,13 @@
 #include <iostream>
 //TODO change to abs path
 #include "../webDav/webDavCon.h"
+#include "../config/config.h"
 
 int handleNewConnection(int file);
 
 void openMasterSocket()
 {
-	openMasterSocket(DEFAULT_PORT);
+	openMasterSocket(config.getWebdav_port());
 }
 
 //todo refactor
