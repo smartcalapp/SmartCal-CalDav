@@ -35,6 +35,9 @@ class WebDavCon {
 					_conString = conStringS.str();
 					//open SQL con
 					_sqlCon = PQconnectdb(_conString.c_str());
+					if (PQstatus(_sqlCon) != CONNECTION_OK){
+						//todo blow up
+					}
 				}
 
 				bool accept();
