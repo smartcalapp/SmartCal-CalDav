@@ -46,7 +46,7 @@ class WebDavCon {
 
 				bool sendCal();
 
-				bool close();
+				bool closeCon();
 
 };
 

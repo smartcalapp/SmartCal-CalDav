@@ -72,7 +72,7 @@ int handleNewConnection(int file) {
 		if (!res) {
 			//todo blow up
 		}
-		res = con.close();
+		res = con.closeCon();
 		if (!res) {
 			//todo blow up
 		}
