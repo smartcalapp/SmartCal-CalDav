@@ -59,7 +59,6 @@ int handleNewConnection(int file) {
 	} else if (forkRet == 0) {
 		//child
 		WebDavCon con(file);
-		//todo do the rest
 		auto res = con.accept();
 		if (!res) {
 			//todo blow up

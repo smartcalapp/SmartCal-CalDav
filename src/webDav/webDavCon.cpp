@@ -16,7 +16,6 @@ bool WebDavCon::accept() {
 }
 
 bool WebDavCon::buildCal() {
-	//TODO
 	char *uuidArr[1];
 	uuidArr[0] = _uuid;
 	if (PQstatus(_sqlCon) != CONNECTION_OK) {
@@ -30,13 +29,23 @@ bool WebDavCon::buildCal() {
 		//TODO exit nicely
 	}
 	//TODO parse sql res
+	auto startTimeColNum = PQfnumber(sqlRes, "start_time");
+	auto endTimeColNum = PQfnumber(sqlRes, "end_time");
+	auto nameColNum = PQfnumber(sqlRes, "name");
+	for (int i = 0; i < PQntuples(sqlRes); i++) {
+		auto startTime = PQgetvalue(sqlRes, i, startTimeColNum);
+		auto endTime = PQgetvalue(sqlRes, i, endTimeColNum);
+		auto name = PQgetvalue(sqlRes, i, nameColNum);
+		//TODO create event and add to calender
+	}
 	//TODO build cal object
 	PQclear(sqlRes);
 	return true;
 }
 
 bool WebDavCon::sendCal() {
-
+	//TODO
+	return false;
 }
 
 bool WebDavCon::closeCon() {
