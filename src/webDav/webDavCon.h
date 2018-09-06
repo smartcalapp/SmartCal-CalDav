@@ -13,40 +13,40 @@
 #include <sstream>
 
 class WebDavCon {
-		private:
-				int _socket;
-				PGconn *_sqlCon;
-				std::string _conString;
-				char* _uuid;
-				Calender _cal;
+	private:
+		int _socket;
+		PGconn *_sqlCon;
+		std::string _conString;
+		char *_uuid;
+		Calender _cal;
 
-				WebDavCon() {
+		WebDavCon() {
 
-				}
+		}
 
-		public:
-				WebDavCon(int file) {
-					_socket = file;
-					//build string to connect to DB
-					std::stringstream conStringS;
-					conStringS << "postgresql://" << config.getPostgress_username() << ":"
-					           << config.getPostgress_password() << "@" << config.getPostgress_server() << ":"
-					           << config.getPostgress_port() << "/" << config.getPostgress_database();
-					_conString = conStringS.str();
-					//open SQL con
-					_sqlCon = PQconnectdb(_conString.c_str());
-					if (PQstatus(_sqlCon) != CONNECTION_OK){
-						//todo blow up
-					}
-				}
+	public:
+		WebDavCon(int file) {
+			_socket = file;
+			//build string to connect to DB
+			std::stringstream conStringS;
+			conStringS << "postgresql://" << config.getPostgress_username() << ":"
+			           << config.getPostgress_password() << "@" << config.getPostgress_server() << ":"
+			           << config.getPostgress_port() << "/" << config.getPostgress_database();
+			_conString = conStringS.str();
+			//open SQL con
+			_sqlCon = PQconnectdb(_conString.c_str());
+			if (PQstatus(_sqlCon) != CONNECTION_OK) {
+				//todo blow up
+			}
+		}
 
-				bool accept();
+		bool accept();
 
-				bool buildCal();
+		bool buildCal();
 
-				bool sendCal();
+		bool sendCal();
 
-				bool closeCon();
+		bool closeCon();
 
 };
 
