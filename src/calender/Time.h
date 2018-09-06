@@ -7,6 +7,7 @@
 
 
 #include <cstdint>
+#include <ostream>
 
 bool isValidTime(uint_fast8_t hour, uint_fast8_t min, uint_fast8_t sec);
 
@@ -67,6 +68,10 @@ class Time {
 					}
 				}
 
+				friend std::ostream &operator<<(std::ostream &os, const Time &time) {
+					os << time._hour <<  time._min <<  time._sec << "Z";
+					return os;
+				}
 };
 
 Time epochTime2Time(int_fast64_t epoch);

@@ -7,6 +7,7 @@
 
 
 #include <cstdint>
+#include <ostream>
 
 bool isValidDate(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month);
 
@@ -28,6 +29,11 @@ class Date {
 					} else {
 						//TODO exept
 					}
+				}
+
+				friend std::ostream &operator<<(std::ostream &os, const Date &date) {
+					os <<  date._year << "-" << date._month << "-" << date._day;
+					return os;
 				}
 
 				uint_fast16_t getyear() const {
