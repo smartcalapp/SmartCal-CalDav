@@ -38,8 +38,8 @@ class Appointment {
 			//TODO real time stamp
 			os << "BEGIN:VEVENT" << ICAL_LINE_SEP << "DTSTAMP: " << appointment._icalStampDate << "T"
 			   << appointment._icalStampTime << ICAL_LINE_SEP << "DTSTART:" << appointment._startDate << "T"
-			   << appointment._startTime << "DTEND" << appointment._endDate << "T" << appointment._endTime
-			   << "END:VEVENT";
+			   << appointment._startTime << ICAL_LINE_SEP << "DTEND" << appointment._endDate << "T"
+			   << appointment._endTime << ICAL_LINE_SEP << "END:VEVENT" << ICAL_LINE_SEP;
 			return os;
 		}
 
