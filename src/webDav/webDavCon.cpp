@@ -29,6 +29,7 @@ bool WebDavCon::buildCal() {
 		//TODO exit nicely
 	}
 	//TODO parse sql res
+	_cal = Calender(PQntuples(sqlRes));
 	auto startTimeColNum = PQfnumber(sqlRes, "start_time");
 	auto endTimeColNum = PQfnumber(sqlRes, "end_time");
 	auto nameColNum = PQfnumber(sqlRes, "name");
@@ -36,6 +37,9 @@ bool WebDavCon::buildCal() {
 		auto startTime = PQgetvalue(sqlRes, i, startTimeColNum);
 		auto endTime = PQgetvalue(sqlRes, i, endTimeColNum);
 		auto name = PQgetvalue(sqlRes, i, nameColNum);
+		auto startTimeInt = atol(startTime);
+		auto endTimeInt = atol(endTime);
+		_cal.add(startTimeInt, endTimeInt, name);
 		//TODO create event and add to calender
 	}
 	//TODO build cal object
