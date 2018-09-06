@@ -8,8 +8,7 @@
 #define DAYS_PER_YEAR 365
 
 
-bool isLeapYear(uint_fast16_t year)
-{
+bool isLeapYear(uint_fast16_t year) {
 	if (year % 4 != 0) {
 		return false;
 	} else if (year % 100 != 0) {
@@ -21,7 +20,7 @@ bool isLeapYear(uint_fast16_t year)
 	}
 }
 
-uint_fast8_t daysInMonth(uint_fast8_t month, uint_fast16_t year){
+uint_fast8_t daysInMonth(uint_fast8_t month, uint_fast16_t year) {
 	if (month == 2 && isLeapYear(year)) {
 		return 29;
 	}
@@ -43,21 +42,20 @@ uint_fast8_t daysInMonth(uint_fast8_t month, uint_fast16_t year){
 	return -1;
 }
 
-Date epochTime2Date(uint_fast64_t epoch){
+Date epochTime2Date(uint_fast64_t epoch) {
 	uint_fast64_t daysSinceEpoch = epoch / EPOCH_SEC_PER_DAY;
 	uint_fast16_t year = 1970;
 	uint_fast8_t month = 0;
-	for (; daysSinceEpoch < (isLeapYear(year) ? 365 : 366); daysSinceEpoch -= isLeapYear(year) ? 365 : 366){
+	for (; daysSinceEpoch < (isLeapYear(year) ? 365 : 366); daysSinceEpoch -= isLeapYear(year) ? 365 : 366) {
 		year++;
 	}
-	for (; daysSinceEpoch < daysInMonth(month, year); daysSinceEpoch -= daysInMonth(month, year)){
+	for (; daysSinceEpoch < daysInMonth(month, year); daysSinceEpoch -= daysInMonth(month, year)) {
 		month++;
 	}
 	return Date(year, daysSinceEpoch, month);
 }
 
-bool isValidDate(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month)
-{
+bool isValidDate(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month) {
 	if (day < 1 || month < 1 || month > 12 || year < 1) {
 		return false;
 	}

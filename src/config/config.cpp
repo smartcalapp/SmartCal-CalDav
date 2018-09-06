@@ -6,8 +6,7 @@
 
 Config config;
 
-Config::Config(std::string path)
-{
+Config::Config(std::string path) {
 	std::ifstream configFile;
 	configFile.open(path);
 	std::string temp;
@@ -59,37 +58,30 @@ Config::Config(std::string path)
 	}
 }
 
-const std::string &Config::getPostgress_server() const
-{
+const std::string &Config::getPostgress_server() const {
 	return postgress_server;
 }
 
-int Config::getPostgress_port() const
-{
+int Config::getPostgress_port() const {
 	return postgress_port;
 }
 
-const std::string &Config::getPostgress_database() const
-{
+const std::string &Config::getPostgress_database() const {
 	return postgress_database;
 }
 
-const std::string &Config::getPostgress_username() const
-{
+const std::string &Config::getPostgress_username() const {
 	return postgress_username;
 }
 
-const std::string &Config::getPostgress_password() const
-{
+const std::string &Config::getPostgress_password() const {
 	return postgress_password;
 }
 
-int Config::getWebdav_port() const
-{
+int Config::getWebdav_port() const {
 	return webdav_port;
 }
 
-const std::string &Config::getConfigPath() const
-{
+const std::string &Config::getConfigPath() const {
 	return configPath;
 }

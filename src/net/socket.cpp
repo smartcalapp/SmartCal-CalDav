@@ -14,14 +14,12 @@
 
 int handleNewConnection(int file);
 
-void openMasterSocket()
-{
+void openMasterSocket() {
 	openMasterSocket(config.getWebdav_port());
 }
 
 //todo refactor
-void openMasterSocket(int port)
-{
+void openMasterSocket(int port) {
 	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	struct sockaddr_in serv_addr;
 	serv_addr.sin_family = AF_INET;
@@ -43,7 +41,7 @@ void openMasterSocket(int port)
 			std::cout << "error establishing connection";
 		} else {
 			auto conErr = handleNewConnection(newsockfd);
-			if (conErr < 0){
+			if (conErr < 0) {
 				std::cout << "error handing connection";
 			}
 		}
@@ -53,16 +51,31 @@ void openMasterSocket(int port)
 	exit(-2);
 }
 
-int handleNewConnection(int file)
-{
+int handleNewConnection(int file) {
 	int forkRet = fork();
 	if (forkRet < 0) {
 		std::cout << "fork error";
 		return -1;
 	} else if (forkRet == 0) {
 		//child
-		new WebDavCon(file);
+		WebDavCon con(file);
 		//todo do the rest
+		auto res = con.accept();
+		if (!res) {
+			//todo blow up
+		}
+		res = con.buildCal();
+		if (!res) {
+			//todo blow up
+		}
+		res = con.sendCal();
+		if (!res) {
+			//todo blow up
+		}
+		res = con.close();
+		if (!res) {
+			//todo blow up
+		}
 		exit(0);
 	} else if (forkRet > 0) {
 		//parent

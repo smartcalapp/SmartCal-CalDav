@@ -9,13 +9,12 @@
 #include "Date.h"
 #include "Time.h"
 
-class Appointment
-{
-	private:
-		Date _startDate;
-		Time _startTime;
-		Date _endDate;
-		Time _endTime;
+class Appointment {
+		private:
+				Date _startDate;
+				Time _startTime;
+				Date _endDate;
+				Time _endTime;
 };
 
 

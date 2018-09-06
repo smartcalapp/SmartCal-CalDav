@@ -7,10 +7,9 @@
 
 #include "Appointment.h"
 
-class Calender
-{
-	private:
-		Appointment _events[];
+class Calender {
+		private:
+				Appointment _events[];
 
 };
 

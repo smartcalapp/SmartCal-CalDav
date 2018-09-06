@@ -3,3 +3,19 @@
 //
 
 #include "webDavCon.h"
+
+bool WebDavCon::accept() {
+	return true;
+}
+
+bool WebDavCon::buildCal() {
+
+}
+
+bool WebDavCon::sendCal() {
+
+}
+
+bool WebDavCon::close() {
+
+}
