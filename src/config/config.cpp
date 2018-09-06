@@ -14,44 +14,44 @@ Config::Config(std::string path)
 	while (configFile) {
 		configFile >> temp;
 		if (temp == "postgress_server") {
-			configFile >> postgress_server;
+			configFile >> temp >> postgress_server;
 			continue;
 		}
 		if (temp == "postgress_port") {
-			configFile >> postgress_port;
+			configFile >> temp >> postgress_port;
 			continue;
 		}
 		if (temp == "postgress_database") {
-			configFile >> postgress_database;
+			configFile >> temp >> postgress_database;
 			continue;
 		}
 		if (temp == "postgress_username") {
-			configFile >> postgress_username;
+			configFile >> temp >> postgress_username;
 			continue;
 		}
 		if (temp == "postgress_password") {
-			configFile >> postgress_password;
+			configFile >> temp >> postgress_password;
 			continue;
 		}
 		if (temp == "webdav_port") {
-			configFile >> webdav_port;
+			configFile >> temp >> webdav_port;
 			continue;
 		}
 	}
-	if (postgress_server == ""){
+	if (postgress_server == "") {
 		postgress_server = "localhost";
 	}
-	if (postgress_port == -1){
+	if (postgress_port == -1) {
 		postgress_port = 5432;
 	}
-	if (postgress_database == ""){
+	if (postgress_database == "") {
 		postgress_database = "SmartCal";
 		//TODO check on
 	}
-	if (postgress_username == ""){
+	if (postgress_username == "") {
 		postgress_username = "SmartCal";
 	}
-	if (postgress_password == ""){
+	if (postgress_password == "") {
 		postgress_password = "@SuperHardP@ss0rd";
 	}
 	if (webdav_port == -1) {
