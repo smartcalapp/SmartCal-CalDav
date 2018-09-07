@@ -12,6 +12,21 @@ events.parent_org WHERE subscriptions_pivot.uuid = %1"
 
 bool WebDavCon::accept() {
 	//TODO parse UUID
+	uint8_t buffer[8192];
+	bzero(buffer, 8192);
+	auto res = read(_socket, buffer, 8192);
+	if (res <0 || res == 8192){
+		std::cout << "error reading socket or get request too long, bailing out" << std::endl;
+		return false;
+	}
+	std::stringstream getReq;
+	getReq << buffer;
+	std::string temp;
+	std::string URI;
+	std::string host;
+	getReq >> temp >> URI >> temp >> host;
+	bzero(buffer, 8192);
+
 	return true;
 }
 
