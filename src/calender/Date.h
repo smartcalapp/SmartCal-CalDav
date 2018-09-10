@@ -17,9 +17,7 @@ class Date {
 				uint_fast8_t _day;
 				uint_fast8_t _month;
 		public:
-				Date() {
-
-				}
+				Date() = default;
 
 				Date(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month) {
 					if (isValidDate(year, day, month)) {
@@ -73,6 +71,6 @@ class Date {
 				}
 };
 
-Date epochTime2Date(uint_fast64_t epoch);
+Date epochTime2Date(int_fast64_t epoch);
 
 #endif //SMARTCAL_CALDAV_DATE_H

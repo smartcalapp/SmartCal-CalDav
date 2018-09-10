@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by Garrett Battaglia on 8/31/18.
 //
@@ -16,15 +18,14 @@ class Calender {
 				int lastAssinged = 0;
 				int numApts;
 		public:
-				Calender(){
+				Calender() = default;
 
-				}
-				Calender(int numberOfApts){
+		Calender(int numberOfApts){
 					_events = new Appointment*[numberOfApts];
 					numApts= numberOfApts;
 				}
-				void add(uint_fast64_t startEpoch, uint_fast64_t endEpoch, std::string name){
-					_events[lastAssinged] = new Appointment(startEpoch, endEpoch, name);
+				void add(int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name){
+					_events[lastAssinged] = new Appointment(startEpoch, endEpoch, std::move(name));
 					lastAssinged++;
 				}
 

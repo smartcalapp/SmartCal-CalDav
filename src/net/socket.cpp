@@ -12,14 +12,14 @@
 #include "../webDav/webDavCon.h"
 #include "../config/config.h"
 
-int handleNewConnection(int file);
+int handleNewConnection(uint_fast16_t file);
 
 void openMasterSocket() {
 	openMasterSocket(config.getWebdav_port());
 }
 
 //todo refactor
-void openMasterSocket(int port) {
+void openMasterSocket(uint_fast16_t port) {
 	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	struct sockaddr_in serv_addr;
 	serv_addr.sin_family = AF_INET;
@@ -35,7 +35,7 @@ void openMasterSocket(int port) {
 	socklen_t cli_len = sizeof(cli_addr);
 	auto error = false;
 	while (!error) {
-		int newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &cli_len);
+		auto newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &cli_len);
 		if (newsockfd < 0) {
 			error = true;
 			std::cout << "error establishing connection";
@@ -51,7 +51,7 @@ void openMasterSocket(int port) {
 	exit(-2);
 }
 
-int handleNewConnection(int file) {
+int handleNewConnection(uint_fast16_t file) {
 	int forkRet = fork();
 	if (forkRet < 0) {
 		std::cout << "fork error";

@@ -16,13 +16,10 @@ class Config {
 		std::string postgress_database = "";
 		std::string postgress_username = "";
 		std::string postgress_password = "";
-		int webdav_port = -1;
+		int_fast16_t webdav_port = -1;
 		std::string configPath = "";
 	public:
-		Config() {
-
-		}
-
+		Config() = default;
 		Config(std::string path);
 
 		const std::string &getPostgress_server() const;
@@ -35,7 +32,7 @@ class Config {
 
 		const std::string &getPostgress_password() const;
 
-		int getWebdav_port() const;
+		uint16_t getWebdav_port() const;
 
 		const std::string &getConfigPath() const;
 };

@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by Garrett Battaglia on 8/31/18.
 //
@@ -22,16 +24,14 @@ class Appointment {
 		Time _endTime;
 		std::string _name;
 	public:
-		Appointment() {
+		Appointment() = default;
 
-		}
-
-		Appointment(uint_fast64_t startEpoch, uint_fast64_t endEpoch, std::string name) {
+		Appointment(int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name) {
 			_startDate = epochTime2Date(startEpoch);
 			_endDate = epochTime2Date(endEpoch);
 			_startTime = epochTime2Time(startEpoch);
 			_endTime = epochTime2Time(endEpoch);
-			_name = name;
+			_name = std::move(name);
 		}
 
 		friend std::ostream &operator<<(std::ostream &os, const Appointment &appointment) {

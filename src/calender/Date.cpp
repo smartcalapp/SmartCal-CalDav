@@ -5,7 +5,7 @@
 #include "Date.h"
 
 #define EPOCH_SEC_PER_DAY 86400
-#define DAYS_PER_YEAR 365
+
 
 
 bool isLeapYear(uint_fast16_t year) {
@@ -13,10 +13,8 @@ bool isLeapYear(uint_fast16_t year) {
 		return false;
 	} else if (year % 100 != 0) {
 		return true;
-	} else if (year % 400 != 400) {
-		return false;
 	} else {
-		return true;
+		return year % 400 == 400;
 	}
 }
 
@@ -42,8 +40,8 @@ uint_fast8_t daysInMonth(uint_fast8_t month, uint_fast16_t year) {
 	return -1;
 }
 
-Date epochTime2Date(uint_fast64_t epoch) {
-	uint_fast64_t daysSinceEpoch = epoch / EPOCH_SEC_PER_DAY;
+Date epochTime2Date(int_fast64_t epoch) {
+	uint_fast64_t daysSinceEpoch = static_cast<uint_fast64_t>(abs(epoch / EPOCH_SEC_PER_DAY));
 	uint_fast16_t year = 1970;
 	uint_fast8_t month = 0;
 	for (; daysSinceEpoch < (isLeapYear(year) ? 365 : 366); daysSinceEpoch -= isLeapYear(year) ? 365 : 366) {

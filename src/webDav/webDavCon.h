@@ -9,7 +9,6 @@
 #include "../calender/Calender.h"
 #include "../config/config.h"
 #include <libpq-fe.h>
-//#include <iosfwd>
 #include <sstream>
 
 class WebDavCon {
@@ -20,9 +19,7 @@ class WebDavCon {
 		char *_uuid;
 		Calender _cal;
 
-		WebDavCon() {
-
-		}
+		WebDavCon()  = default;
 
 	public:
 		WebDavCon(int file) {

@@ -78,8 +78,8 @@ const std::string &Config::getPostgress_password() const {
 	return postgress_password;
 }
 
-int Config::getWebdav_port() const {
-	return webdav_port;
+uint16_t Config::getWebdav_port() const {
+	return static_cast<uint16_t>(webdav_port);
 }
 
 const std::string &Config::getConfigPath() const {

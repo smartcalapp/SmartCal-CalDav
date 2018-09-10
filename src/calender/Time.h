@@ -18,9 +18,7 @@ class Time {
 		uint_fast8_t _min;
 		uint_fast8_t _sec;
 	public:
-		Time() {
-
-		}
+		Time() = default;
 
 		Time(uint_fast8_t hour, uint_fast8_t min, uint_fast8_t sec) {
 			if (isValidTime(hour, min, sec)) {
