@@ -19,8 +19,7 @@ class Calender {
 				int numApts;
 		public:
 				Calender() = default;
-
-		Calender(int numberOfApts){
+				Calender(int numberOfApts){
 					_events = new Appointment*[numberOfApts];
 					numApts= numberOfApts;
 				}

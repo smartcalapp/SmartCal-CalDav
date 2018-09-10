@@ -14,6 +14,8 @@ bool isValidTime(uint_fast8_t hour, uint_fast8_t min, uint_fast8_t sec) {
 	return (hour > 0 && hour < 24) && (min > 0 && min < 60) && (sec > 0 && sec < 60);
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
 Time epochTime2Time(int_fast64_t epoch) {
 	uint_fast16_t secsOfDay = epoch % EPOCH_SEC_PER_DAY;
 	uint_fast8_t hours = secsOfDay / SECS_PER_HR;
@@ -23,3 +25,4 @@ Time epochTime2Time(int_fast64_t epoch) {
 	uint_fast8_t secs = secsOfDay;
 	return Time(hours, mins, secs);
 }
+#pragma clang diagnostic pop

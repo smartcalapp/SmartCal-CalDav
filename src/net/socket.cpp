@@ -21,7 +21,7 @@ void openMasterSocket() {
 //todo refactor
 void openMasterSocket(uint_fast16_t port) {
 	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-	struct sockaddr_in serv_addr;
+	struct sockaddr_in serv_addr; // NOLINT(cppcoreguidelines-pro-type-member-init)
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
 	serv_addr.sin_port = htons(port);
@@ -31,7 +31,7 @@ void openMasterSocket(uint_fast16_t port) {
 	}
 	listen(sockfd, 5);
 
-	struct sockaddr_in cli_addr;
+	struct sockaddr_in cli_addr; // NOLINT(cppcoreguidelines-pro-type-member-init)
 	socklen_t cli_len = sizeof(cli_addr);
 	auto error = false;
 	while (!error) {
@@ -40,7 +40,7 @@ void openMasterSocket(uint_fast16_t port) {
 			error = true;
 			std::cout << "error establishing connection";
 		} else {
-			auto conErr = handleNewConnection(newsockfd);
+			auto conErr = handleNewConnection(static_cast<uint_fast16_t>(newsockfd));
 			if (conErr < 0) {
 				std::cout << "error handing connection";
 			}

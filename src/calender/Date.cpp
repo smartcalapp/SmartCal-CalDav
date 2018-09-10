@@ -37,11 +37,16 @@ uint_fast8_t daysInMonth(uint_fast8_t month, uint_fast16_t year) {
 	if (month > 7 && month % 2 == 0) {
 		return 31;
 	}
-	return -1;
+	return static_cast<uint_fast8_t>(-1);
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
 Date epochTime2Date(int_fast64_t epoch) {
-	uint_fast64_t daysSinceEpoch = static_cast<uint_fast64_t>(abs(epoch / EPOCH_SEC_PER_DAY));
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsign-conversion"
+	uint_fast64_t daysSinceEpoch = abs(epoch / EPOCH_SEC_PER_DAY);
+#pragma clang diagnostic pop
 	uint_fast16_t year = 1970;
 	uint_fast8_t month = 0;
 	for (; daysSinceEpoch < (isLeapYear(year) ? 365 : 366); daysSinceEpoch -= isLeapYear(year) ? 365 : 366) {
@@ -52,6 +57,7 @@ Date epochTime2Date(int_fast64_t epoch) {
 	}
 	return Date(year, daysSinceEpoch, month);
 }
+#pragma clang diagnostic pop
 
 bool isValidDate(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month) {
 	if (day < 1 || month < 1 || month > 12 || year < 1) {
