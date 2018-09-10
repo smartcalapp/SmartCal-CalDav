@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include "webDavCon.h"
 
+//TODO refactor
 
 static const std::string SUBS_TABLE = "users_organizations_subscriptions_pivot";
 static const std::string SUBS_TABLE_ORG_ROW = "orgination_id";
@@ -20,16 +21,17 @@ static const std::string SQL_SELECT_EVENTS =
 				"SELECT * FROM " + EVENTS_TABLE + " INNER JOIN " + SUBS_TABLE + " ON " + SUBS_TABLE + "." +
 				SUBS_TABLE_ORG_ROW + " = " + EVENTS_TABLE + "." + EVENTS_TABLE_ORG_ROW + " WHERE " + SUBS_TABLE + "." +
 				SUBS_TABLE_USER_UUID_ROW + " = %1";
-//TODO replace with real values
 static const std::string USERS_TABLE = "users";
 static const std::string USERS_TABLE_ID_ROW = "id";
 static const std::string USERS_TABLE_UUID_ROW = "uuid";
 static const std::string SQL_SELECT_USER_ID_FROM_UUID =
 				"SELECT " + USERS_TABLE_ID_ROW + " FROM " + USERS_TABLE + " WHERE " + USERS_TABLE_UUID_ROW + " = %1";
-
+static const std::string HTTP_LINE_BREAK = "\r\n";
+static const std::string GET_OK_RESPONSE_HEADER =
+				"HTTP/1.1 200 OK" + HTTP_LINE_BREAK + "Connection: close" + HTTP_LINE_BREAK +
+				"Content-type: text/calendar" + HTTP_LINE_BREAK + HTTP_LINE_BREAK;
 
 bool WebDavCon::accept() {
-	//TODO parse UUID
 	uint8_t buffer[8192];
 	bzero(buffer, 8192);
 	auto res = read(_socket, buffer, 8192);
@@ -63,7 +65,7 @@ bool WebDavCon::accept() {
 		//TODO exit nicely
 	}
 
-	if (PQntuples(sqlRes)){
+	if (PQntuples(sqlRes)) {
 		std::cout << "too many results returned, bailing out" << std::endl;
 		//todo exit nicely
 	}
@@ -102,8 +104,16 @@ bool WebDavCon::buildCal() {
 }
 
 bool WebDavCon::sendCal() {
-	//TODO
-	return false;
+	std::stringstream toSendSS;
+	toSendSS << GET_OK_RESPONSE_HEADER;
+	toSendSS << _cal;
+	auto toSend = toSendSS.str().c_str();
+	auto res = write(_socket, toSend, strlen(toSend));
+	if (res < 0){
+		//todo blow up
+		return false;
+	}
+	return true;
 }
 
 bool WebDavCon::closeCon() {
