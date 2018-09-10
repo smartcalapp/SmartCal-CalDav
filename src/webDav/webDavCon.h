@@ -17,6 +17,7 @@ class WebDavCon {
 		PGconn *_sqlCon;
 		std::string _conString;
 		std::string _uuid;
+		std::string _id;
 		Calender _cal;
 
 		WebDavCon()  = default;
