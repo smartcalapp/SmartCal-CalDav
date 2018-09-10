@@ -21,9 +21,9 @@ static const std::string SQL_SELECT_EVENTS =
 				SUBS_TABLE_ORG_ROW + " = " + EVENTS_TABLE + "." + EVENTS_TABLE_ORG_ROW + " WHERE " + SUBS_TABLE + "." +
 				SUBS_TABLE_USER_UUID_ROW + " = %1";
 //TODO replace with real values
-static const std::string USERS_TABLE = "";
-static const std::string USERS_TABLE_ID_ROW = "";
-static const std::string USERS_TABLE_UUID_ROW = "";
+static const std::string USERS_TABLE = "users";
+static const std::string USERS_TABLE_ID_ROW = "id";
+static const std::string USERS_TABLE_UUID_ROW = "uuid";
 static const std::string SQL_SELECT_USER_ID_FROM_UUID =
 				"SELECT " + USERS_TABLE_ID_ROW + " FROM " + USERS_TABLE + " WHERE " + USERS_TABLE_UUID_ROW + " = %1";
 
