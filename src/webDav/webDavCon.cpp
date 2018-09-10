@@ -36,16 +36,16 @@ bool WebDavCon::accept() {
 	std::string temp;
 	std::string URI;
 	std::string host;
-	//        GET     URI    HTTP/1.1 Host:  hostname
+	//         GET    URI    HTTP/1.1 Host:  hostname
 	getReq >> temp >> URI >> temp >> temp >> host;
 	bzero(buffer, 8192);
-
+	_uuid = URI.substr(1);
 	return true;
 }
 
 bool WebDavCon::buildCal() {
-	char *uuidArr[1];
-	uuidArr[0] = _uuid;
+	const char *uuidArr[1];
+	uuidArr[0] = _uuid.c_str();
 	if (PQstatus(_sqlCon) != CONNECTION_OK) {
 		std::cout << "postgres connection closed while needed, bailing out" << std::endl;
 		return false;
