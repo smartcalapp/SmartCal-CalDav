@@ -6,8 +6,6 @@
 
 Config config;
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "readability-container-size-empty"
 Config::Config(std::string path) {
 	std::ifstream configFile;
 	configFile.open(path);
@@ -59,7 +57,6 @@ Config::Config(std::string path) {
 		webdav_port = 80;
 	}
 }
-#pragma clang diagnostic pop
 
 const std::string &Config::getPostgress_server() const {
 	return postgress_server;
