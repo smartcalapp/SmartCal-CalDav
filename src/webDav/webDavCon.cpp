@@ -36,7 +36,8 @@ bool WebDavCon::accept() {
 	std::string temp;
 	std::string URI;
 	std::string host;
-	getReq >> temp >> URI >> temp >> host;
+	//        GET     URI    HTTP/1.1 Host:  hostname
+	getReq >> temp >> URI >> temp >> temp >> host;
 	bzero(buffer, 8192);
 
 	return true;
