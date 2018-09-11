@@ -25,7 +25,7 @@ class Date {
 						_day = day;
 						_month = month;
 					} else {
-						//TODO exept
+						throw new std::domain_error("invaild date");
 					}
 				}
 
@@ -42,7 +42,7 @@ class Date {
 					if (isValidDate(year, _day, _month)) {
 						Date::_year = year;
 					} else {
-						//TODO exept
+						throw new std::domain_error("seting year would make date invalid");
 					}
 				}
 
@@ -54,7 +54,7 @@ class Date {
 					if (isValidDate(_year, day, _month)) {
 						Date::_day = day;
 					} else {
-						//TODO exept
+						throw new std::domain_error("seting day would make date invalid");
 					}
 				}
 
@@ -66,7 +66,7 @@ class Date {
 					if (isValidDate(_year, _day, month)) {
 						Date::_month = month;
 					} else {
-						//TODO exept
+						throw new std::domain_error("seting month would make date invalid");
 					}
 				}
 };
