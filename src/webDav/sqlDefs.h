@@ -16,6 +16,7 @@ static const std::string EVENTS_TABLE_START_TIME_ROW = "start_time";
 static const std::string EVENTS_TABLE_END_TIME_ROW = "end_time";
 static const std::string EVENTS_TABLE_NAME_ROW = "name";
 static const std::string EVENTS_TABLE_CREATE_ROW = "created_at";
+static const std::string EVENTS_TABLE_UUID_ROW = "uuid";
 static const std::string SQL_SELECT_EVENTS =
 				"SELECT EXTRACT(EPOCH FROM " + EVENTS_TABLE_START_TIME_ROW + ")as " + EVENTS_TABLE_START_TIME_ROW +
 				", EXTRACT(EPOCH FROM " + EVENTS_TABLE_END_TIME_ROW + ")as " + EVENTS_TABLE_END_TIME_ROW +

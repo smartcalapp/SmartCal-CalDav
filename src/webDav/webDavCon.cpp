@@ -68,15 +68,17 @@ bool WebDavCon::buildCal() {
 	auto endTimeColNum = PQfnumber(sqlRes, EVENTS_TABLE_END_TIME_ROW.c_str());
 	auto nameColNum = PQfnumber(sqlRes, EVENTS_TABLE_NAME_ROW.c_str());
 	auto createStampColNum = PQfnumber(sqlRes, EVENTS_TABLE_CREATE_ROW.c_str());
+	auto uuidColNum = PQfnumber(sqlRes, EVENTS_TABLE_UUID_ROW.c_str());
 	for (int i = 0; i < PQntuples(sqlRes); i++) {
 		auto createStamp = PQgetvalue(sqlRes, i, createStampColNum);
 		auto startTime = PQgetvalue(sqlRes, i, startTimeColNum);
 		auto endTime = PQgetvalue(sqlRes, i, endTimeColNum);
 		auto name = PQgetvalue(sqlRes, i, nameColNum);
+		auto uuid = PQgetvalue(sqlRes, i, uuidColNum);
 		auto startTimeInt = atol(startTime);
 		auto endTimeInt = atol(endTime);
 		auto createStampInt = atol(createStamp);
-		_cal.add(createStampInt, startTimeInt, endTimeInt, name);
+		_cal.add(createStampInt, startTimeInt, endTimeInt, name, uuid);
 	}
 	PQclear(sqlRes);
 	return true;

@@ -23,8 +23,8 @@ class Calender {
 					_events = new Appointment*[numberOfApts];
 					numApts= numberOfApts;
 				}
-				void add(int_fast64_t createEpoch, int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name){
-					_events[lastAssinged] = new Appointment(createEpoch, startEpoch, endEpoch, std::move(name));
+				void add(int_fast64_t createEpoch, int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name, std::string uuid){
+					_events[lastAssinged] = new Appointment(createEpoch, startEpoch, endEpoch, std::move(name), uuid);
 					lastAssinged++;
 				}
 
