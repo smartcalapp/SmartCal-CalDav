@@ -44,10 +44,6 @@ bool WebDavCon::accept() {
 		return false;
 	}
 
-	/*if (PQntuples(sqlRes)) {
-		std::cout << "too many results returned, bailing out" << std::endl;
-		return false;
-	}*/
 	auto idRowNum = PQfnumber(sqlRes, USERS_TABLE_ID_ROW.c_str());
 	_id = PQgetvalue(sqlRes, 0, idRowNum);
 	return true;
@@ -78,7 +74,6 @@ bool WebDavCon::buildCal() {
 		auto startTimeInt = atol(startTime);
 		auto endTimeInt = atol(endTime);
 		_cal.add(startTimeInt, endTimeInt, name);
-		//std::cout << "looping" << std::endl;
 	}
 	PQclear(sqlRes);
 	return true;
@@ -90,8 +85,6 @@ bool WebDavCon::sendCal() {
 	calSS << _cal;
 	toSendSS << GET_OK_RESPONSE_HEADER << calSS.str().length() << HTTP_LINE_BREAK << HTTP_LINE_BREAK;
 	toSendSS << calSS.str();
-	auto toSend = toSendSS.str().c_str();
-	//std::cout << "sending: " << toSend << "should send: " << toSendSS.str() << "full covert: " << toSendSS.str().c_str();
 	auto res = write(_socket, toSendSS.str().c_str(), strlen(toSendSS.str().c_str()));
 	return res >= 0;
 }

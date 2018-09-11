@@ -3,7 +3,7 @@ project(SmartCal_CalDav)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
 
 add_executable(SmartCal_CalDav src/main.cpp src/net/socket.cpp src/webDav/webDavCon.cpp src/webDav/webDavCon.h
