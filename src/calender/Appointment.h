@@ -28,15 +28,10 @@ class Appointment {
 		Appointment() = default;
 
 		Appointment(int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name) {
-			std::cout << "creating start date" <<std::endl;
 			_startDate = epochTime2Date(startEpoch);
-			std::cout << "creating end date" <<std::endl;
 			_endDate = epochTime2Date(endEpoch);
-			std::cout << "creating start time" <<std::endl;
 			_startTime = epochTime2Time(startEpoch);
-			std::cout << "creating end time" <<std::endl;
 			_endTime = epochTime2Time(endEpoch);
-			std::cout << "moving name" <<std::endl;
 			_name = std::move(name);
 		}
 

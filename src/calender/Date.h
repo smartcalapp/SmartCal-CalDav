@@ -9,17 +9,17 @@
 #include <cstdint>
 #include <ostream>
 
-bool isValidDate(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month);
+bool isValidDate(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month);
 
 class Date {
 		private:
 				uint_fast16_t _year;
-				uint_fast8_t _day;
-				uint_fast8_t _month;
+				uint_fast16_t _day;
+				uint_fast16_t _month;
 		public:
 				Date() = default;
 
-				Date(uint_fast16_t year, uint_fast8_t day, uint_fast8_t month) {
+				Date(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month) {
 					if (isValidDate(year, day, month)) {
 						_year = year;
 						_day = day;
@@ -50,7 +50,7 @@ class Date {
 					return _day;
 				}
 
-				void setday(uint_fast8_t day) {
+				void setday(uint_fast16_t day) {
 					if (isValidDate(_year, day, _month)) {
 						Date::_day = day;
 					} else {
@@ -62,7 +62,7 @@ class Date {
 					return _month;
 				}
 
-				void setmonth(uint_fast8_t month) {
+				void setmonth(uint_fast16_t month) {
 					if (isValidDate(_year, _day, month)) {
 						Date::_month = month;
 					} else {

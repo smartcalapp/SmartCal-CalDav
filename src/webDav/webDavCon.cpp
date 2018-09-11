@@ -71,21 +71,14 @@ bool WebDavCon::buildCal() {
 	auto startTimeColNum = PQfnumber(sqlRes, EVENTS_TABLE_START_TIME_ROW.c_str());
 	auto endTimeColNum = PQfnumber(sqlRes, EVENTS_TABLE_END_TIME_ROW.c_str());
 	auto nameColNum = PQfnumber(sqlRes, EVENTS_TABLE_NAME_ROW.c_str());
-	std::cout << "entering build loop" << std::endl;
 	for (int i = 0; i < PQntuples(sqlRes); i++) {
 		auto startTime = PQgetvalue(sqlRes, i, startTimeColNum);
-		std::cout << startTime << std::endl;
 		auto endTime = PQgetvalue(sqlRes, i, endTimeColNum);
-		std::cout << endTime << std::endl;
 		auto name = PQgetvalue(sqlRes, i, nameColNum);
-		std::cout << name << std::endl;
 		auto startTimeInt = atol(startTime);
-		std::cout << startTimeInt << std::endl;
 		auto endTimeInt = atol(endTime);
-		std::cout << endTimeInt << std::endl;
-		std::cout << "got values from DB" << std::endl;
 		_cal.add(startTimeInt, endTimeInt, name);
-		std::cout << "added to calender" << std::endl;
+		//std::cout << "looping" << std::endl;
 	}
 	PQclear(sqlRes);
 	return true;
@@ -94,8 +87,9 @@ bool WebDavCon::buildCal() {
 bool WebDavCon::sendCal() {
 	std::stringstream toSendSS;
 	toSendSS << GET_OK_RESPONSE_HEADER;
-	toSendSS << _cal;
+	toSendSS << _cal << HTTP_LINE_BREAK << HTTP_LINE_BREAK;
 	auto toSend = toSendSS.str().c_str();
+	//std::cout << "sending" << toSendSS.str();
 	auto res = write(_socket, toSend, strlen(toSend));
 	return res >= 0;
 }

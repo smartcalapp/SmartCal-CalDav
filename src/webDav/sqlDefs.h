@@ -16,9 +16,11 @@ static const std::string EVENTS_TABLE_START_TIME_ROW = "start_time";
 static const std::string EVENTS_TABLE_END_TIME_ROW = "end_time";
 static const std::string EVENTS_TABLE_NAME_ROW = "name";
 static const std::string SQL_SELECT_EVENTS =
-				"SELECT * FROM " + EVENTS_TABLE + " INNER JOIN " + SUBS_TABLE + " ON " + SUBS_TABLE + "." +
-				SUBS_TABLE_ORG_ROW + " = " + EVENTS_TABLE + "." + EVENTS_TABLE_ORG_ROW + " WHERE " + SUBS_TABLE + "." +
-				SUBS_TABLE_USER_UUID_ROW + " = $1";
+				"SELECT EXTRACT(EPOCH FROM " + EVENTS_TABLE_START_TIME_ROW +
+				")as " + EVENTS_TABLE_START_TIME_ROW + ", EXTRACT(EPOCH FROM " + EVENTS_TABLE_END_TIME_ROW + ")as " +
+				EVENTS_TABLE_END_TIME_ROW + ", * FROM " + EVENTS_TABLE +
+				" INNER JOIN " + SUBS_TABLE + " ON " + SUBS_TABLE + "." + SUBS_TABLE_ORG_ROW + " = " + EVENTS_TABLE +
+				"." + EVENTS_TABLE_ORG_ROW + " WHERE " + SUBS_TABLE + "." + SUBS_TABLE_USER_UUID_ROW + " = $1";
 static const std::string USERS_TABLE = "users";
 static const std::string USERS_TABLE_ID_ROW = "id";
 static const std::string USERS_TABLE_UUID_ROW = "uuid";
@@ -28,5 +30,7 @@ static const std::string HTTP_LINE_BREAK = "\r\n";
 static const std::string GET_OK_RESPONSE_HEADER =
 				"HTTP/1.1 200 OK" + HTTP_LINE_BREAK + "Connection: close" + HTTP_LINE_BREAK +
 				"Content-type: text/calendar" + HTTP_LINE_BREAK + HTTP_LINE_BREAK;
+static const std::string TIME_STAMP_TO_EPOCH = "select extract(epoch from ";
+static const std::string TIME_STAMP_TO_EPOCH_END = ")::bigint;";
 
 #endif //SMARTCAL_CALDAV_SQLDEFS_H

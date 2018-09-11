@@ -61,21 +61,25 @@ int handleNewConnection(uint_fast16_t file) {
 		WebDavCon con(file);
 		auto res = con.accept();
 		if (!res) {
+			std::cout << "accept failed" << std::endl;
 			//con.closeCon();
 			//todo that should work
 		}
 		res = con.buildCal();
 		if (!res) {
+			std::cout << "buld failed" << std::endl;
 			//con.closeCon();
 			//todo that should work
 		}
 		res = con.sendCal();
 		if (!res) {
+			std::cout << "send failed" << std::endl;
 			//todo blow up HTTP
 			//con.closeCon();
 		}
 		res = con.closeCon();
 		if (!res) {
+			std::cout << "close failed" << std::endl;
 			//todo blow up
 		}
 		exit(0);
