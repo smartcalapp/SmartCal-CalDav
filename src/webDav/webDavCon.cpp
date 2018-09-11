@@ -67,13 +67,16 @@ bool WebDavCon::buildCal() {
 	auto startTimeColNum = PQfnumber(sqlRes, EVENTS_TABLE_START_TIME_ROW.c_str());
 	auto endTimeColNum = PQfnumber(sqlRes, EVENTS_TABLE_END_TIME_ROW.c_str());
 	auto nameColNum = PQfnumber(sqlRes, EVENTS_TABLE_NAME_ROW.c_str());
+	auto createStampColNum = PQfnumber(sqlRes, EVENTS_TABLE_CREATE_ROW.c_str());
 	for (int i = 0; i < PQntuples(sqlRes); i++) {
+		auto createStamp = PQgetvalue(sqlRes, i, createStampColNum);
 		auto startTime = PQgetvalue(sqlRes, i, startTimeColNum);
 		auto endTime = PQgetvalue(sqlRes, i, endTimeColNum);
 		auto name = PQgetvalue(sqlRes, i, nameColNum);
 		auto startTimeInt = atol(startTime);
 		auto endTimeInt = atol(endTime);
-		_cal.add(startTimeInt, endTimeInt, name);
+		auto createStampInt = atol(createStamp);
+		_cal.add(createStampInt, startTimeInt, endTimeInt, name);
 	}
 	PQclear(sqlRes);
 	return true;
@@ -86,6 +89,7 @@ bool WebDavCon::sendCal() {
 	toSendSS << GET_OK_RESPONSE_HEADER << calSS.str().length() << HTTP_LINE_BREAK << HTTP_LINE_BREAK;
 	toSendSS << calSS.str();
 	auto res = write(_socket, toSendSS.str().c_str(), strlen(toSendSS.str().c_str()));
+	std::cout << "sent";
 	return res >= 0;
 }
 

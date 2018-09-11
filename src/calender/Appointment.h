@@ -27,7 +27,9 @@ class Appointment {
 	public:
 		Appointment() = default;
 
-		Appointment(int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name) {
+		Appointment(int_fast64_t createEpoch, int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name) {
+			_icalStampDate = epochTime2Date(createEpoch);
+			_icalStampTime = epochTime2Time(createEpoch);
 			_startDate = epochTime2Date(startEpoch);
 			_endDate = epochTime2Date(endEpoch);
 			_startTime = epochTime2Time(startEpoch);
