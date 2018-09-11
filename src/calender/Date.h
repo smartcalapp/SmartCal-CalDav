@@ -8,67 +8,69 @@
 
 #include <cstdint>
 #include <ostream>
+#include <iomanip>
 
 bool isValidDate(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month);
 
 class Date {
-		private:
-				uint_fast16_t _year;
-				uint_fast16_t _day;
-				uint_fast16_t _month;
-		public:
-				Date() = default;
+	private:
+		uint_fast16_t _year;
+		uint_fast16_t _day;
+		uint_fast16_t _month;
+	public:
+		Date() = default;
 
-				Date(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month) {
-					if (isValidDate(year, day, month)) {
-						_year = year;
-						_day = day;
-						_month = month;
-					} else {
-						throw new std::domain_error("invaild date");
-					}
-				}
+		Date(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month) {
+			if (isValidDate(year, day, month)) {
+				_year = year;
+				_day = day;
+				_month = month;
+			} else {
+				throw new std::domain_error("invaild date");
+			}
+		}
 
-				friend std::ostream &operator<<(std::ostream &os, const Date &date) {
-					os <<  date._year << "-" << date._month << "-" << date._day;
-					return os;
-				}
+		friend std::ostream &operator<<(std::ostream &os, const Date &date) {
+			os << std::setfill('0') << std::setw(2) << date._year << std::setw(2) << date._month << std::setw(2)
+			   << date._day;
+			return os;
+		}
 
-				uint_fast16_t getyear() const {
-					return _year;
-				}
+		uint_fast16_t getyear() const {
+			return _year;
+		}
 
-				void setyear(uint_fast16_t year) {
-					if (isValidDate(year, _day, _month)) {
-						Date::_year = year;
-					} else {
-						throw new std::domain_error("seting year would make date invalid");
-					}
-				}
+		void setyear(uint_fast16_t year) {
+			if (isValidDate(year, _day, _month)) {
+				Date::_year = year;
+			} else {
+				throw new std::domain_error("seting year would make date invalid");
+			}
+		}
 
-				uint_fast8_t getday() const {
-					return _day;
-				}
+		uint_fast8_t getday() const {
+			return _day;
+		}
 
-				void setday(uint_fast16_t day) {
-					if (isValidDate(_year, day, _month)) {
-						Date::_day = day;
-					} else {
-						throw new std::domain_error("seting day would make date invalid");
-					}
-				}
+		void setday(uint_fast16_t day) {
+			if (isValidDate(_year, day, _month)) {
+				Date::_day = day;
+			} else {
+				throw new std::domain_error("seting day would make date invalid");
+			}
+		}
 
-				uint_fast8_t getmonth() const {
-					return _month;
-				}
+		uint_fast8_t getmonth() const {
+			return _month;
+		}
 
-				void setmonth(uint_fast16_t month) {
-					if (isValidDate(_year, _day, month)) {
-						Date::_month = month;
-					} else {
-						throw new std::domain_error("seting month would make date invalid");
-					}
-				}
+		void setmonth(uint_fast16_t month) {
+			if (isValidDate(_year, _day, month)) {
+				Date::_month = month;
+			} else {
+				throw new std::domain_error("seting month would make date invalid");
+			}
+		}
 };
 
 Date epochTime2Date(int_fast64_t epoch);

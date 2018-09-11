@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <ostream>
+#include <iomanip>
 
 bool isValidTime(uint_fast16_t hour, uint_fast16_t min, uint_fast16_t sec);
 
@@ -67,7 +68,8 @@ class Time {
 		}
 
 		friend std::ostream &operator<<(std::ostream &os, const Time &time) {
-			os << time._hour << time._min << time._sec << "Z";
+			os << std::setfill('0') << std::setw(2) << time._hour << std::setw(2) << time._min << std::setw(2)
+			   << time._sec << "Z";
 			return os;
 		}
 };
