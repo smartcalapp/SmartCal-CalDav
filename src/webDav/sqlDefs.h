@@ -29,7 +29,7 @@ static const std::string SQL_SELECT_USER_ID_FROM_UUID =
 static const std::string HTTP_LINE_BREAK = "\r\n";
 static const std::string GET_OK_RESPONSE_HEADER =
 				"HTTP/1.1 200 OK" + HTTP_LINE_BREAK + "Connection: close" + HTTP_LINE_BREAK +
-				"Content-type: text/calendar" + HTTP_LINE_BREAK + HTTP_LINE_BREAK;
+				"Content-type: text/calendar" + HTTP_LINE_BREAK + "Content-Length: ";
 static const std::string TIME_STAMP_TO_EPOCH = "select extract(epoch from ";
 static const std::string TIME_STAMP_TO_EPOCH_END = ")::bigint;";
 

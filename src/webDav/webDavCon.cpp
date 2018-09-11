@@ -86,11 +86,13 @@ bool WebDavCon::buildCal() {
 
 bool WebDavCon::sendCal() {
 	std::stringstream toSendSS;
-	toSendSS << GET_OK_RESPONSE_HEADER;
-	toSendSS << _cal << HTTP_LINE_BREAK << HTTP_LINE_BREAK;
+	std::stringstream calSS;
+	calSS << _cal;
+	toSendSS << GET_OK_RESPONSE_HEADER << calSS.str().length() << HTTP_LINE_BREAK << HTTP_LINE_BREAK;
+	toSendSS << calSS.str();
 	auto toSend = toSendSS.str().c_str();
-	//std::cout << "sending" << toSendSS.str();
-	auto res = write(_socket, toSend, strlen(toSend));
+	//std::cout << "sending: " << toSend << "should send: " << toSendSS.str() << "full covert: " << toSendSS.str().c_str();
+	auto res = write(_socket, toSendSS.str().c_str(), strlen(toSendSS.str().c_str()));
 	return res >= 0;
 }
 
