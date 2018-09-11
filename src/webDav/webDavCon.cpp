@@ -44,16 +44,17 @@ bool WebDavCon::accept() {
 		return false;
 	}
 
-	if (PQntuples(sqlRes)) {
+	/*if (PQntuples(sqlRes)) {
 		std::cout << "too many results returned, bailing out" << std::endl;
 		return false;
-	}
+	}*/
 	auto idRowNum = PQfnumber(sqlRes, USERS_TABLE_ID_ROW.c_str());
-	_id = atoi(PQgetvalue(sqlRes, 0, idRowNum));
+	_id = PQgetvalue(sqlRes, 0, idRowNum);
 	return true;
 }
 
 bool WebDavCon::buildCal() {
+
 	const char *uuidArr[1];
 	uuidArr[0] = _id.c_str();
 	if (PQstatus(_sqlCon) != CONNECTION_OK) {
@@ -88,11 +89,7 @@ bool WebDavCon::sendCal() {
 	toSendSS << _cal;
 	auto toSend = toSendSS.str().c_str();
 	auto res = write(_socket, toSend, strlen(toSend));
-	if (res < 0){
-
-		return false;
-	}
-	return true;
+	return res >= 0;
 }
 
 bool WebDavCon::closeCon() {

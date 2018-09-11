@@ -44,14 +44,14 @@ Config::Config(std::string path) {
 		postgress_port = 5432;
 	}
 	if (postgress_database == "") {
-		postgress_database = "SmartCal";
+		postgress_database = "smartcal";
 		//TODO check on
 	}
 	if (postgress_username == "") {
-		postgress_username = "SmartCal";
+		postgress_username = "smartcal";
 	}
 	if (postgress_password == "") {
-		postgress_password = "@SuperHardP@ss0rd";
+		postgress_password = "@SuperHardP@ssW0rd";
 	}
 	if (webdav_port == -1) {
 		webdav_port = 80;

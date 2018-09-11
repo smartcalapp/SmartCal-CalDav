@@ -61,18 +61,18 @@ int handleNewConnection(uint_fast16_t file) {
 		WebDavCon con(file);
 		auto res = con.accept();
 		if (!res) {
-			con.closeCon();
+			//con.closeCon();
 			//todo that should work
 		}
 		res = con.buildCal();
 		if (!res) {
-			con.closeCon();
+			//con.closeCon();
 			//todo that should work
 		}
 		res = con.sendCal();
 		if (!res) {
 			//todo blow up HTTP
-			con.closeCon();
+			//con.closeCon();
 		}
 		res = con.closeCon();
 		if (!res) {
