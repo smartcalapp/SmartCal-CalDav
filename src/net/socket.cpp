@@ -67,12 +67,12 @@ int handleNewConnection(uint_fast16_t file) {
 		res = con.buildCal();
 		if (!res) {
 			con.closeCon();
-			//todo blow up
+			//todo that should work
 		}
 		res = con.sendCal();
 		if (!res) {
+			//todo blow up HTTP
 			con.closeCon();
-			//todo blow up
 		}
 		res = con.closeCon();
 		if (!res) {

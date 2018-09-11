@@ -62,12 +62,12 @@ bool WebDavCon::accept() {
 	if (PQresultStatus(sqlRes) != PGRES_TUPLES_OK) {
 		std::cout << "error (" << PQresultErrorMessage(sqlRes) << ")selecting events, bailing out" << std::endl;
 		PQclear(sqlRes);
-		//TODO exit nicely
+		return false;
 	}
 
 	if (PQntuples(sqlRes)) {
 		std::cout << "too many results returned, bailing out" << std::endl;
-		//todo exit nicely
+		return false;
 	}
 	auto idRowNum = PQfnumber(sqlRes, USERS_TABLE_ID_ROW.c_str());
 	_id = atoi(PQgetvalue(sqlRes, 0, idRowNum));
@@ -85,7 +85,7 @@ bool WebDavCon::buildCal() {
 	if (PQresultStatus(sqlRes) != PGRES_TUPLES_OK) {
 		std::cout << "error (" << PQresultErrorMessage(sqlRes) << ")selecting events, bailing out" << std::endl;
 		PQclear(sqlRes);
-		//TODO exit nicely
+		return false;
 	}
 	_cal = Calender(PQntuples(sqlRes));
 	auto startTimeColNum = PQfnumber(sqlRes, EVENTS_TABLE_START_TIME_ROW.c_str());
@@ -110,7 +110,7 @@ bool WebDavCon::sendCal() {
 	auto toSend = toSendSS.str().c_str();
 	auto res = write(_socket, toSend, strlen(toSend));
 	if (res < 0){
-		//todo blow up
+
 		return false;
 	}
 	return true;
