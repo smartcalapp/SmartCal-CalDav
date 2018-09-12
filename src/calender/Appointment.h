@@ -43,7 +43,7 @@ class Appointment {
 		friend std::ostream &operator<<(std::ostream &os, const Appointment &appointment) {
 			os << "BEGIN:VEVENT" << ICAL_LINE_SEP << "DTSTAMP: " << appointment._icalStampDate << "T"
 			   << appointment._icalStampTime << ICAL_LINE_SEP << "DTSTART:" << appointment._startDate << "T"
-			   << appointment._startTime << ICAL_LINE_SEP << "DTEND" << appointment._endDate << "T"
+			   << appointment._startTime << ICAL_LINE_SEP << "DTEND:" << appointment._endDate << "T"
 			   << appointment._endTime << ICAL_LINE_SEP << "SUMMARY:" << appointment._name << ICAL_LINE_SEP << "UID:"
 			   << appointment._uuid << ICAL_LINE_SEP << "END:VEVENT" << ICAL_LINE_SEP;
 			return os;
