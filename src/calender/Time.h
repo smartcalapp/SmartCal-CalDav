@@ -27,7 +27,7 @@ class Time {
 				_min = min;
 				_sec = sec;
 			} else {
-				throw new std::domain_error("invalid time");
+				throw  std::domain_error("invalid time");
 			}
 		}
 
@@ -39,7 +39,7 @@ class Time {
 			if (isValidTime(hour, _min, _sec)) {
 				Time::_hour = hour;
 			} else {
-				throw new std::domain_error("seting hour would make time invalid");
+				throw  std::domain_error("seting hour would make time invalid");
 			}
 		}
 
@@ -51,7 +51,7 @@ class Time {
 			if (isValidTime(_hour, min, _sec)) {
 				Time::_min = min;
 			} else {
-				throw new std::domain_error("seting min would make time invalid");
+				throw  std::domain_error("seting min would make time invalid");
 			}
 		}
 
@@ -63,7 +63,7 @@ class Time {
 			if (isValidTime(_hour, _min, sec)) {
 				Time::_sec = sec;
 			} else {
-				throw new std::domain_error("seting sec would make time invalid");
+				throw  std::domain_error("seting sec would make time invalid");
 			}
 		}
 

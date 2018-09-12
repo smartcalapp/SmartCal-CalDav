@@ -15,10 +15,10 @@ bool isValidTime(uint_fast16_t hour, uint_fast16_t min, uint_fast16_t sec) {
 }
 
 Time epochTime2Time(int_fast64_t epoch) {
-	uint_fast16_t secsOfDay = epoch % EPOCH_SEC_PER_DAY;
-	uint_fast16_t hours = secsOfDay / SECS_PER_HR;
+	auto secsOfDay = static_cast<uint_fast16_t>(epoch % EPOCH_SEC_PER_DAY);
+	auto hours = static_cast<uint_fast16_t>(secsOfDay / SECS_PER_HR);
 	secsOfDay %= SECS_PER_HR;
-	uint_fast16_t mins = secsOfDay / SECS_PER_MIN;
+	auto mins = static_cast<uint_fast16_t>(secsOfDay / SECS_PER_MIN);
 	secsOfDay %= SECS_PER_MIN;
 	uint_fast16_t secs = secsOfDay;
 	return Time(hours, mins, secs);

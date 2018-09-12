@@ -42,7 +42,7 @@ uint_fast16_t daysInMonth(uint_fast16_t month, uint_fast16_t year) {
 }
 
 Date epochTime2Date(int_fast64_t epoch) {
-	uint_fast64_t daysSinceEpoch = static_cast<uint_fast64_t>(epoch / EPOCH_SEC_PER_DAY);
+	auto daysSinceEpoch = static_cast<uint_fast64_t>(epoch / EPOCH_SEC_PER_DAY);
 	uint_fast16_t year = 1970;
 	uint_fast16_t month = 0;
 	for (; daysSinceEpoch > (isLeapYear(year) ? 365 : 366); daysSinceEpoch -= isLeapYear(year) ? 365 : 366) {
@@ -51,7 +51,7 @@ Date epochTime2Date(int_fast64_t epoch) {
 	for (; daysSinceEpoch > daysInMonth(month, year); daysSinceEpoch -= daysInMonth(month, year)) {
 		month++;
 	}
-	return Date(year, daysSinceEpoch, month);
+	return Date(year, static_cast<uint_fast16_t>(daysSinceEpoch), month);
 }
 
 bool isValidDate(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month) {

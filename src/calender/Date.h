@@ -26,7 +26,7 @@ class Date {
 				_day = day;
 				_month = month;
 			} else {
-				throw new std::domain_error("invaild date");
+				throw  std::domain_error("invaild date");
 			}
 		}
 
@@ -44,11 +44,11 @@ class Date {
 			if (isValidDate(year, _day, _month)) {
 				Date::_year = year;
 			} else {
-				throw new std::domain_error("seting year would make date invalid");
+				throw std::domain_error("seting year would make date invalid");
 			}
 		}
 
-		uint_fast8_t getday() const {
+		uint_fast16_t getday() const {
 			return _day;
 		}
 
@@ -56,11 +56,11 @@ class Date {
 			if (isValidDate(_year, day, _month)) {
 				Date::_day = day;
 			} else {
-				throw new std::domain_error("seting day would make date invalid");
+				throw  std::domain_error("seting day would make date invalid");
 			}
 		}
 
-		uint_fast8_t getmonth() const {
+		uint_fast16_t getmonth() const {
 			return _month;
 		}
 
@@ -68,7 +68,7 @@ class Date {
 			if (isValidDate(_year, _day, month)) {
 				Date::_month = month;
 			} else {
-				throw new std::domain_error("seting month would make date invalid");
+				throw  std::domain_error("seting month would make date invalid");
 			}
 		}
 };
