@@ -64,14 +64,12 @@ int handleNewConnection(uint_fast16_t file) {
 			std::cout << "accept failed" << std::endl;
 			con.closeCon();
 			exit(-1);
-			//todo that should work
 		}
 		res = con.buildCal();
 		if (!res) {
 			std::cout << "buld failed" << std::endl;
 			con.closeCon();
 			exit(-1);
-			//todo that should work
 		}
 		res = con.sendCal();
 		if (!res) {
@@ -83,7 +81,6 @@ int handleNewConnection(uint_fast16_t file) {
 		res = con.closeCon();
 		if (!res) {
 			std::cout << "close failed" << std::endl;
-			//todo blow up
 		}
 		exit(0);
 	} else if (forkRet > 0) {

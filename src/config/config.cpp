@@ -45,7 +45,6 @@ Config::Config(std::string path) {
 	}
 	if (postgress_database == "") {
 		postgress_database = "smartcal";
-		//TODO check on
 	}
 	if (postgress_username == "") {
 		postgress_username = "smartcal";
