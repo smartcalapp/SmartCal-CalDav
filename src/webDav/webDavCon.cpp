@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <strings.h>
 #include "webDavCon.h"
 #include "sqlDefs.h"
 #include "../calender/epoch.h"
@@ -108,4 +109,5 @@ bool WebDavCon::closeCon() {
 bool WebDavCon::closeSocket(){
 	shutdown(_socket, SHUT_WR);
 	close(_socket);
+	return true;
 }
