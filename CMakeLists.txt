@@ -8,7 +8,7 @@ set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
 add_executable(SmartCal_CalDav src/main.cpp src/net/socket.cpp src/webDav/webDavCon.cpp src/webDav/webDavCon.h
         src/calender/Calender.cpp src/calender/Calender.h src/calender/Appointment.cpp src/calender/Appointment.h
-        src/calender/Date.cpp src/calender/Date.h src/calender/Time.cpp src/calender/Time.h src/config/config.cpp src/config/config.h src/calender/iCalDefs.h src/webDav/sqlDefs.h)
+        src/calender/Date.cpp src/calender/Date.h src/calender/Time.cpp src/calender/Time.h src/config/config.cpp src/config/config.h src/calender/iCalDefs.h src/webDav/sqlDefs.h src/calender/epoch.cpp src/calender/epoch.h)
 
 #include libqp
 find_path(POSTGRESS_SQL_INCLUDE_DIR libpq-fe.h)

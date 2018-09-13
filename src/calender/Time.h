@@ -31,6 +31,12 @@ class Time {
 			}
 		}
 
+		Time(tm* time) {
+			_hour = time->tm_hour;
+			_min = time ->tm_min;
+			_sec = time->tm_sec;
+		}
+
 		uint_fast16_t gethour() const {
 			return _hour;
 		}

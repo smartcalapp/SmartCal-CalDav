@@ -40,6 +40,18 @@ class Appointment {
 			_uuid = std::move(uuid);
 		}
 
+		Appointment(tm* createEpoch, tm* startEpoch, tm* endEpoch, std::string name,
+		            std::string uuid) {
+			_icalStampDate = Date(createEpoch);
+			_icalStampTime = Time(createEpoch);
+			_startDate = Date(startEpoch);
+			_endDate = Date(endEpoch);
+			_startTime = Time(startEpoch);
+			_endTime = Time(endEpoch);
+			_name = std::move(name);
+			_uuid = std::move(uuid);
+		}
+
 		friend std::ostream &operator<<(std::ostream &os, const Appointment &appointment) {
 			os << "BEGIN:VEVENT" << ICAL_LINE_SEP << "DTSTAMP: " << appointment._icalStampDate << "T"
 			   << appointment._icalStampTime << ICAL_LINE_SEP << "DTSTART:" << appointment._startDate << "T"

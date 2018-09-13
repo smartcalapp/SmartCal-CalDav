@@ -14,6 +14,8 @@ bool isValidTime(uint_fast16_t hour, uint_fast16_t min, uint_fast16_t sec) {
 	return (hour > 0 && hour < 24) && (min > 0 && min < 60) && (sec > 0 && sec < 60);
 }
 
+
+//todo fix
 Time epochTime2Time(int_fast64_t epoch) {
 	auto secsOfDay = static_cast<uint_fast16_t>(epoch % EPOCH_SEC_PER_DAY);
 	auto hours = static_cast<uint_fast16_t>(secsOfDay / SECS_PER_HR);

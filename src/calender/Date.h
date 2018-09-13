@@ -22,12 +22,19 @@ class Date {
 
 		Date(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month) {
 			if (isValidDate(year, day, month)) {
-				_year = year;
+				_year = year ;
 				_day = day;
 				_month = month;
 			} else {
 				throw  std::domain_error("invaild date");
 			}
+		}
+
+		Date(tm* time){
+			_year = time->tm_year + 1900;
+			_month = time->tm_mon + 1;
+			_day = time->tm_mday;
+			std::cout << "_year " << _year << " _month " << _month << " _day " << _day << std::endl;
 		}
 
 		friend std::ostream &operator<<(std::ostream &os, const Date &date) {

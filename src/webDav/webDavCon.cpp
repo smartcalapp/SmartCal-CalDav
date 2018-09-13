@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include "webDavCon.h"
 #include "sqlDefs.h"
+#include "../calender/epoch.h"
 
 //TODO refactor
 
@@ -78,7 +79,10 @@ bool WebDavCon::buildCal() {
 		auto startTimeInt = atol(startTime);
 		auto endTimeInt = atol(endTime);
 		auto createStampInt = atol(createStamp);
-		_cal.add(createStampInt, startTimeInt, endTimeInt, name, uuid);
+		auto createTimeTm = SecondsSinceEpochToDateTime(new tm, createStampInt);
+		auto startTimeTm = SecondsSinceEpochToDateTime(new tm, startTimeInt);
+		auto endTimeTm = SecondsSinceEpochToDateTime(new tm, endTimeInt);
+		_cal.add(createTimeTm, startTimeTm, endTimeTm, name, uuid);
 	}
 	PQclear(sqlRes);
 	return true;
