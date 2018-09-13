@@ -1,4 +1,5 @@
 #include <iostream>
+#include <signal.h>
 #include "net/socket.h"
 #include "config/config.h"
 
