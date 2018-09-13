@@ -20,20 +20,49 @@ class Config {
 		std::string configPath = "";
 	public:
 		Config() = default;
+		/**
+		 * read config file
+		 * @param path path of config file
+		 */
 		Config(std::string path);
-
+		/**
+ 		* get the postgres server address from config
+ 		* @return host with postgres server
+ 		*/
 		const std::string &getPostgress_server() const;
-
+		/**
+		 * get port postgres is working on from config
+		 * @return port postgres is on
+		 */
 		int getPostgress_port() const;
-
+		/**
+		 * get database smartcal should work with
+		 * @return database
+		 */
 		const std::string &getPostgress_database() const;
 
+		/**
+		 * get username to postgres server
+		 * @return username
+		 */
 		const std::string &getPostgress_username() const;
 
+		/**
+		 * get password to postgres server
+		 * @return password
+		 */
 		const std::string &getPostgress_password() const;
 
+		/**
+		 * get port to host on
+		 * @return port
+		 */
 		uint16_t getWebdav_port() const;
 
+		/**
+		 * get path to config
+		 * @return path
+		 */
 		const std::string &getConfigPath() const;
 };
 

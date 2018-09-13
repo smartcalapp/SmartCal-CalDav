@@ -6,6 +6,12 @@
 #include <string.h>
 #include <iostream>
 
+/**
+ * covert epoch time to tm structure
+ * @param pTm tm struct to fill in
+ * @param SecondsSinceEpoch epoch time stamp
+ * @return pTm filled in based on timestamp
+ */
 //WARN: TAKEN FROM http://qr.ae/TUNleL
 struct tm* SecondsSinceEpochToDateTime(tm* pTm, uint_fast64_t SecondsSinceEpoch)
 {

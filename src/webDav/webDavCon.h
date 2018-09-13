@@ -23,6 +23,10 @@ class WebDavCon {
 		WebDavCon()  = default;
 
 	public:
+		/**
+		 * start connection to db and prepare to process connection
+		 * @param file
+		 */
 		WebDavCon(int file) {
 			_socket = file;
 			//build string to connect to DB
@@ -35,13 +39,34 @@ class WebDavCon {
 			_sqlCon = PQconnectdb(_conString.c_str());
 		}
 
+		/**
+		 * accept the connection and parse out UUID and get local ID
+		 * @return success
+		 */
 		bool accept();
 
+		/**
+		 * query database and build calendar
+		 * @return success
+		 */
 		bool buildCal();
 
+		/**
+		 * send calendar to client
+		 * @return success
+		 */
 		bool sendCal();
 
+		/**
+		 * close connection
+		 * @return success
+		 */
 		bool closeCon();
+
+		/**
+		 * close the socket
+		 * @return success
+		 */
 		bool closeSocket();
 };
 

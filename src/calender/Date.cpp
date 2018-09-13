@@ -8,7 +8,11 @@
 #define EPOCH_SEC_PER_DAY 86400
 
 
-
+/**
+ * checks if year is a leap year
+ * @param year year to check
+ * @return true if year is a leap year
+ */
 bool isLeapYear(uint_fast16_t year) {
 	if (year % 4 != 0) {
 		return false;
@@ -19,6 +23,12 @@ bool isLeapYear(uint_fast16_t year) {
 	}
 }
 
+/**
+ * get the number of days in a month
+ * @param month month to check
+ * @param year year month is in (for leap years
+ * @return days in a month
+ */
 uint_fast16_t daysInMonth(uint_fast16_t month, uint_fast16_t year) {
 	if (month == 2 && isLeapYear(year)) {
 		return 29;
@@ -42,6 +52,11 @@ uint_fast16_t daysInMonth(uint_fast16_t month, uint_fast16_t year) {
 }
 
 //TODO fix
+/**
+ * convert epoch timestamp to a date object, dosen't currently work
+ * @param epoch timestamp to convers
+ * @return Date object based on epoch timestamp
+ */
 Date epochTime2Date(int_fast64_t epoch) {
 	auto daysSinceEpoch = static_cast<uint_fast64_t>(epoch / EPOCH_SEC_PER_DAY);
 	uint_fast16_t year = 1970;
@@ -55,6 +70,13 @@ Date epochTime2Date(int_fast64_t epoch) {
 	return Date(year, static_cast<uint_fast16_t>(daysSinceEpoch), month);
 }
 
+/**
+ * check if given date is valid
+ * @param year
+ * @param day
+ * @param month
+ * @return true if date is valid
+ */
 bool isValidDate(uint_fast16_t year, uint_fast16_t day, uint_fast16_t month) {
 	if (day < 1 || month < 1 || month > 12 || year < 1) {
 		return false;

@@ -4,6 +4,7 @@
 // Created by Garrett Battaglia on 8/31/18.
 //
 
+
 #ifndef SMARTCAL_CALDAV_APPOINTMENT_H
 #define SMARTCAL_CALDAV_APPOINTMENT_H
 
@@ -28,6 +29,14 @@ class Appointment {
 	public:
 		Appointment() = default;
 
+		/**
+		 * create an appointment off an epoch time
+		 * @param createEpoch the epoch time that the appointment was created, needed by ICAL
+		 * @param startEpoch the epoch time that the appointment starts
+		 * @param endEpoch the epoch time that the appointment ends
+		 * @param name the name of the appointment
+		 * @param uuid the globaly unique ID needed by ICAL
+		 */
 		Appointment(int_fast64_t createEpoch, int_fast64_t startEpoch, int_fast64_t endEpoch, std::string name,
 		            std::string uuid) {
 			_icalStampDate = epochTime2Date(createEpoch);
@@ -40,8 +49,15 @@ class Appointment {
 			_uuid = std::move(uuid);
 		}
 
-		Appointment(tm* createEpoch, tm* startEpoch, tm* endEpoch, std::string name,
-		            std::string uuid) {
+		/**
+		 * create an appointemnt based off unix tm structure
+		 * @param createEpoch create tm structure
+		 * @param startEpoch start tm structure
+		 * @param endEpoch end tm structure
+		 * @param name the name of the appointment
+		 * @param uuid the globaly unique ID needed by ICAL
+		 */
+		Appointment(tm *createEpoch, tm *startEpoch, tm *endEpoch, std::string name, std::string uuid) {
 			_icalStampDate = Date(createEpoch);
 			_icalStampTime = Time(createEpoch);
 			_startDate = Date(startEpoch);
@@ -52,6 +68,12 @@ class Appointment {
 			_uuid = std::move(uuid);
 		}
 
+		/**
+ 		* output the event in ICAL format, standard stream out op
+ 		* @param os
+ 		* @param appointment
+ 		* @return
+ 		*/
 		friend std::ostream &operator<<(std::ostream &os, const Appointment &appointment) {
 			os << "BEGIN:VEVENT" << ICAL_LINE_SEP << "DTSTAMP: " << appointment._icalStampDate << "T"
 			   << appointment._icalStampTime << ICAL_LINE_SEP << "DTSTART:" << appointment._startDate << "T"
