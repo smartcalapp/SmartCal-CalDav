@@ -1,5 +1,7 @@
 #include <iostream>
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "net/socket.h"
 #include "config/config.h"
 
