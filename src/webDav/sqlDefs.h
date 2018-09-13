@@ -17,13 +17,14 @@ static const std::string EVENTS_TABLE_END_TIME_ROW = "end_time";
 static const std::string EVENTS_TABLE_NAME_ROW = "name";
 static const std::string EVENTS_TABLE_CREATE_ROW = "created_at";
 static const std::string EVENTS_TABLE_UUID_ROW = "uuid";
+static const std::string EVENTS_TABEL_PUBLISHED_ROW = "published";
 static const std::string SQL_SELECT_EVENTS =
 				"SELECT EXTRACT(EPOCH FROM " + EVENTS_TABLE_START_TIME_ROW + ")as " + EVENTS_TABLE_START_TIME_ROW +
 				", EXTRACT(EPOCH FROM " + EVENTS_TABLE_END_TIME_ROW + ")as " + EVENTS_TABLE_END_TIME_ROW +
 				",EXTRACT(EPOCH FROM " + EVENTS_TABLE_CREATE_ROW + ")as " + EVENTS_TABLE_CREATE_ROW + ", * FROM " +
 				EVENTS_TABLE + " INNER JOIN " + SUBS_TABLE + " ON " + SUBS_TABLE + "." + SUBS_TABLE_ORG_ROW + " = " +
 				EVENTS_TABLE + "." + EVENTS_TABLE_ORG_ROW + " WHERE " + SUBS_TABLE + "." + SUBS_TABLE_USER_UUID_ROW +
-				" = $1";
+				" = $1 AND " + EVENTS_TABLE + "." + EVENTS_TABEL_PUBLISHED_ROW;
 static const std::string USERS_TABLE = "users";
 static const std::string USERS_TABLE_ID_ROW = "id";
 static const std::string USERS_TABLE_UUID_ROW = "uuid";
