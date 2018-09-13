@@ -42,7 +42,7 @@ class WebDavCon {
 		bool sendCal();
 
 		bool closeCon();
-
+		bool closeSocket();
 };
 
 

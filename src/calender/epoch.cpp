@@ -6,7 +6,7 @@
 #include <string.h>
 #include <iostream>
 
-//WARN: TAKEN FROM 
+//WARN: TAKEN FROM http://qr.ae/TUNleL
 struct tm* SecondsSinceEpochToDateTime(tm* pTm, uint_fast64_t SecondsSinceEpoch)
 {
 	uint_fast64_t sec;
@@ -113,7 +113,6 @@ struct tm* SecondsSinceEpochToDateTime(tm* pTm, uint_fast64_t SecondsSinceEpoch)
 
 	// Fill in C's "struct tm"
 	memset(pTm, 0, sizeof(*pTm));
-	std::cout  << "year: " << year << " month: " << month << " day: " << mday << " hour: " << hour << " min: " << min << " sec: " << sec << std::endl;
 	pTm->tm_sec = sec;          // [0,59]
 	pTm->tm_min = min;          // [0,59]
 	pTm->tm_hour = hour;        // [0,23]

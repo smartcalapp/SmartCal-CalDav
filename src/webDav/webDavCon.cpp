@@ -100,8 +100,12 @@ bool WebDavCon::sendCal() {
 }
 
 bool WebDavCon::closeCon() {
-	shutdown(_socket, SHUT_WR);
-	close(_socket);
+	closeSocket();
 	PQfinish(_sqlCon);
 	return true;
+}
+
+bool WebDavCon::closeSocket(){
+	shutdown(_socket, SHUT_WR);
+	close(_socket);
 }

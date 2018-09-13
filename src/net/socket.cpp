@@ -62,20 +62,23 @@ int handleNewConnection(uint_fast16_t file) {
 		auto res = con.accept();
 		if (!res) {
 			std::cout << "accept failed" << std::endl;
-			//con.closeCon();
+			con.closeCon();
+			exit(-1);
 			//todo that should work
 		}
 		res = con.buildCal();
 		if (!res) {
 			std::cout << "buld failed" << std::endl;
-			//con.closeCon();
+			con.closeCon();
+			exit(-1);
 			//todo that should work
 		}
 		res = con.sendCal();
 		if (!res) {
 			std::cout << "send failed" << std::endl;
 			//todo blow up HTTP
-			//con.closeCon();
+			con.closeCon();
+			exit(-1);
 		}
 		res = con.closeCon();
 		if (!res) {
